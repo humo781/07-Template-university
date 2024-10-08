@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Group list</title>
+    <style>
+        .order-number {
+            width: 50px;
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-4">
+    <h2>Group List</h2>
+
+    <a href="{% url 'group_create' %}" class="btn btn-primary mb-3">Add New Group</a>
+
+    <table class="table table-bordered">
+        <thead class="thead-light">
+            <tr>
+                <th class="col-4">Group name</th>
+                <th class="col-6">Amount of students</th>
+                <th class="text-right">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for group in groups %}
+            <tr>
+                <td>{{ group.name }}</td>
+                <td>{{ group.amount_of_students }}</td>
+                <td class="text-right">
+                    <a href="{% url 'group_update' group.pk %}" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="{% url 'group_delete' group.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+            {% empty %}
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
